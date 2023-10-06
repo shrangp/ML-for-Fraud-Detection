@@ -1,6 +1,7 @@
 ---
 layout: default
 title: ML Project - Fraud Detection in Transactions
+description:
 ---
 # Project Proposal
 
