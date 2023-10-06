@@ -3,10 +3,6 @@ layout: default
 title: ML Project - Fraud Detection in Transactions
 description:
 ---
-# Project Proposal
+# [Project Proposal](./project-proposal.html)
 
-[Our motivation for the project](./project-proposal.html)
-
-# Gantt Chart
-
-[Link to Gantt Chart](./gantt.html)
+# [Gantt Chart](./gantt.html)

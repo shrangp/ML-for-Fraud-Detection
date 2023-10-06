@@ -36,13 +36,28 @@ The data shows that, with proper training and data preprocessing to balance data
 | Shane Sinnerine   | Methods, Contribution Table, Presentation                                           |
 | Maniya Dahiya     | Methods, Discussion, Video, Presentation                                            |
 
+## Checkpoints
+
+**Checkpoint 1 (October 25th)** - We should be done with research on all the models. Data pre-processing and a significant portion of the coding for the model should also be completed. We will also focus on working towards model selection for the other 2 models and a portion of data pre-processing for the other 2.
+
+
+**Checkpoint 2 (Novermber 10th: Midterm Report)** - We should have substantial results genereated from model 1 after completing and fine tuning the code. Also, we aim to be in the process of coding and developing Models 2 and 3.
+
+
+**Checkpoint 3 (November 22nd)** - We should have substantial results generated from all models and will be ready to derive conclusions and comparisons for final report. If some results are lacking due to incomplete code, we will work on fine tuning the codebase, which should not take more than a few days after this checkpoint.
+
+
+**Checkpoint 4 (December 5th)** - Completely done with the final report, conclusions and comparisons.
+
+
+**Note:** When we refer to models 1, 2, and 3 we could include a multiple set of models in each with a larger number of models catering to supervised learning as compared to unsupervised. The aim will be to try to shortlist only singular models at each stage, but that depends on the accuracy we attain.
+
 ## Potential References
 
 1. Ileberi, Emmanuel & Sun, Yanxia & Wang, Zenghui. (2022). A machine learning based credit card fraud detection using the GA algorithm for feature selection. Journal of Big Data. 9. 10.1186/s40537-022-00573-8.
 2. Pozzolo, A.D., & Bontempi, G. (2015). Adaptive Machine Learning for Credit Card Fraud Detection.
 3. Khare, N., & Sait, S. Y. (2018). Credit card fraud detection using machine learning models and collating machine learning models. International Journal of Pure and Applied Mathematics, 118(20), 825-838.
 4. Varmedja, Dejan & Karanovic, Mirjana & Sladojevic, Srdjan & Arsenovic, Marko & Anderla, Andras. (2019). Credit Card Fraud Detection - Machine Learning methods. 1-5. 10.1109/INFOTEH.2019.8717766.
-5. leberi, E., Sun, Y. & Wang, Z. A machine learning based credit card fraud detection using the GA algorithm for feature selection. J Big Data9, 24 (2022). https://doi.org/10.1186/s40537-022-00573-8I
-6. “Credit-Card-Fraud-Detection”. Dec 7 2021 [Online]. Available: [https://russell-newton.github.io/Credit-Card-Fraud-Detection/final](https://russell-newton.github.io/Credit-Card-Fraud-Detection/final)**
+5. “Credit-Card-Fraud-Detection”. Dec 7 2021 [Online]. Available: [https://russell-newton.github.io/Credit-Card-Fraud-Detection/final](https://russell-newton.github.io/Credit-Card-Fraud-Detection/final)**
 
 [Go back](./)
