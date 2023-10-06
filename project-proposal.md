@@ -28,15 +28,13 @@ The data shows that, with proper training and data preprocessing to balance data
 ## Contribution Table
 
 
-**| Contributor       | Tasks                                                                               |
-| ------------------- | ------------------------------------------------------------------------------------- |
+| Contributor       | Tasks                                                                               |
+| ----------------- | ----------------------------------------------------------------------------------- |
 | Saarang Prabhuram | Github Pages, Introduction, Problem Definition, Proposed Timeline / Gantt Chart     |
 | Rohan Batra       | Background, Introduction, Potential Datasets, Problem Definition, Proposed Timeline |
 | Richard Zhao      | Potential Datasets, Methods, Potential Results, Discussion                          |
 | Shane Sinnerine   | Methods, Contribution Table, Presentation                                           |
 | Maniya Dahiya     | Methods, Discussion, Video, Presentation                                            |
-
-**
 
 ## Potential References
 
