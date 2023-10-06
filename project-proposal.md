@@ -9,7 +9,7 @@ Around 151 million American adults experienced credit card fraud in 2023, a cons
 
 ## Background (Literature Review)
 
-In previous years, researchers utilized various algorithms like "Decision Tree," "SVM," and "Logistic Regression" in 2018, and "Random Forest," "Naive Bayes," and "Multilayer Perceptron" in 2019 to analyze data and develop classifiers for performance comparison [3][4]. Research performed in 2022 also involved the use of generic algorithms along with multiple ML models like the ones mentioned above to work on this problem [5]. We aim to minimize false positives and explore smarter, possibly real-time solutions for this growing issue.
+In previous years, researchers utilized various algorithms like "Decision Tree," "SVM," and "Logistic Regression" in 2018, and "Random Forest," "Naive Bayes," and "Multilayer Perceptron" in 2019 to analyze data and develop classifiers for performance comparison [3][4]. Research performed in 2022 also involved the use of generic algorithms along with multiple ML models like the ones mentioned above to work on this problem [1]. We aim to minimize false positives and explore smarter, possibly real-time solutions for this growing issue.
 
 ## Dataset and Methods
 
