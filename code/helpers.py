@@ -6,8 +6,15 @@ from collections import Counter
 
 np.set_printoptions(suppress=True)
 #I refuse to try to read scientific notation
+#I don't print anything but even so
 
 def standardization(dataset):
+    """
+    Standardizes an inputted dataset.
+    Parameters: A dataset (NP, Panda, etc.)
+    Returns: Dataset such that mean of all columns is 0 and variance is 1
+    Requres: sklearn library
+    """
     return StandardScaler().fit_transform(dataset)
 
 def undersampling(dataset, labels):
