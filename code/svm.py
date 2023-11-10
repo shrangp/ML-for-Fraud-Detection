@@ -22,7 +22,7 @@ def read_data(link):
 def split_data(df):
     X = df.iloc[:,:-1].values # features
     y = df.iloc[:,-1].values # target
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.80, random_state=42) # splitting data into train and test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42) # splitting data into train and test
     return X_train, X_test, y_train, y_test
 
 # SVM MODEL
@@ -70,8 +70,30 @@ def get_confusion_matrix_svm(y_pred, y_test):
     plt.show()
 
 def get_classification_report_svm(y_pred, y_test):
-    classification_report_svm = classification_report(y_test, y_pred) # getting classification report of SVM linear model
+    classification_report_svm = classification_report(y_test, y_pred, digits = 6) # getting classification report of SVM linear model
     return classification_report_svm
+
+def accuracy_vs_features_plot(data, model):
+    # Plotting accuracy vs number of features. Calculating accuracy for each number of features
+    accuracy_list = [] # list to store accuracy
+    for i in range(1, 31):
+        X_train, X_test, y_train, y_test = split_data(data) # splitting data into train and test
+        if model == "svm_linear":
+            svm_linear = train_svm_linear(X_train[:, :i], y_train) # training SVM linear model
+            y_pred = predict_svm_linear(svm_linear, X_test[:, :i]) # predicting using SVM linear model
+        elif model == "svm_poly":
+            svm_poly = train_svm_poly(X_train[:, :i], y_train)
+            y_pred = predict_svm_poly(svm_poly, X_test[:, :i])
+        accuracy = get_accuracy_svm(y_pred, y_test) # getting accuracy of SVM linear model
+        accuracy_list.append(accuracy) # appending accuracy to accuracy list
+    # plotting accuracy vs number of features
+    plt.plot(range(1, 31), accuracy_list,scaley=True)
+    plt.xlabel("Number of features")
+    plt.ylabel("Accuracy")
+    plt.title("Accuracy vs Number of features")
+    plt.show()
+
+
 
   
 def run_svm_linear():
@@ -83,6 +105,7 @@ def run_svm_linear():
     print("Accuracy of SVM linear model is: ", accuracy) # printing accuracy of SVM linear model
     print("Classification report of SVM linear model is:\n ", get_classification_report_svm(y_pred, y_test)) # printing classification report of SVM linear model
     get_confusion_matrix_svm(y_pred, y_test) # printing confusion matrix of SVM linear model
+    accuracy_vs_features_plot(data, "svm_linear") # plotting accuracy vs number of features
 
 def run_svm_poly():
     data = read_data(undersampled) # reading data from csv file
