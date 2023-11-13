@@ -47,7 +47,7 @@ The core technical impetus behind this project is to mitigate the impact of cred
 
 ## Methods
 
-##### **Data Preprocessing:**
+### **Data Preprocessing:**
 
 For this project, data preprocessing can be roughly split into three sections: Initial Cleaning of data, Data standardization, and finally, Data resampling.
 
@@ -81,7 +81,7 @@ One process we chose not to perform was dimensionality reduction. This is due to
 
 The graph demonstrates that there is a relatively linear relationship between the number of components and the total remaining variance, suggesting that it would be difficult to remove even a few components without seriously affecting the total remaining variance.
 
-##### **Support Vector Machine Model (SVM):**
+### **Support Vector Machine Model (SVM):**
 
 SVMs or Support Vector Machines are a supervised learning technique used for classification. It works by finding a hyperplane that divides 2 classes as best as possible. To do this SVM tries to find a hyperplane such that the distances between the hyperplane and the 2 classes are maximized.
 
@@ -121,7 +121,7 @@ While SVM looks to be successful at analyzing the undersampled dataset, the time
 
 As the SMOTE oversampled dataset has a total of 566505 data points and 30 features, the time it would take to successfully run and optimize a SVM model on the dataset is far too expensive time-wise to be practical. As such, we chose not to attempt to perform a thorough analysis on the results of SVM on the SMOTE dataset, due to the time constraints of the project.
 
-##### **K-Nearest Neighbors (KNN):**
+### **K-Nearest Neighbors (KNN):**
 
 KNN operates on a simple concept: it classifies a data point based on how its neighbors are classified. The "k" in k-NN refers to the number of nearest neighbors considered when making the classification decision. The algorithm identifies the 'k' closest training examples in feature space and the class with the majority vote is the prediction for the classification task.
 
@@ -145,7 +145,7 @@ We processed both the SMOTE and undersampled datasets for KNN implementation. Th
 
 ![]()![]()In both the undersampled and SMOTE datasets, the KNN algorithm has showcased a high degree of accuracy and reliability. The consistent performance across various metrics and cross-validation folds reflects the algorithm's potential for real-world applications in fraud detection. However, as with any model trained on specific types of datasets, it's crucial to perform further validation and testing, particularly in more complex and diverse real-world environments. This will help ensure that the model remains effective and robust when confronted with the myriad of scenarios present in actual credit card transaction data.
 
-##### **Random Forest Classifier**:
+### **Random Forest Classifier**:
 
 A random forest classifier is also a classification algorithm that uses many decision trees to make predictions. It is an ensemble learning algorithm that uses a collection of decision trees to make predictions, called bagging, with the idea that multiple uncorrelated models perform much better as a group than they do alone.
 
