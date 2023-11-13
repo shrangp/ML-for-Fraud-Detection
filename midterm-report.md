@@ -131,7 +131,7 @@ data point and consider the 'k' nearest data points to it. If the majority of th
 
 ![1699838508969](image/midterm-report/1699838508969.png)
 
-![]()Reference: [https://www.ibm.com/topics/knn](https://www.ibm.com/topics/knn)
+Source: [https://www.ibm.com/topics/knn](https://www.ibm.com/topics/knn)
 
 For our dataset, we split the data into 80% training and 20% testing, after applying Synthetic Minority Over-sampling Technique (SMOTE) and Undersampling to address class imbalance, and choose a k value of 50 to balance between noise reduction and maintaining class distinction. The rationale behind using KNN for our dataset is its effectiveness in handling multi-feature data. Our dataset, with its numerous features, is a good candidate for KNN, as the algorithm can effectively gauge similarity between data points in a multi-dimensional feature space.
 
@@ -170,6 +170,8 @@ This confusion matrix that includes all features of the dataset (29) shows an ex
 ![]()![1699838699330](image/midterm-report/1699838699330.png)
 
 Precision was more or less the same for all numbers of features. All other quantitative metrics were slightly lower when there were only a maximum of five features. However, when there are ten or more features, there is no fluctuation in the values of all other quantitative metrics. This difference in metrics is still not very high based on the number of features, other than a slight increase in metrics from five to ten features, which was expected. Although these results are remarkable, there is more research required to ensure correct model performance based on features, no overfitting, and no data leakage.
+
+SMOTE sampled:
 
 ![]()![1699838725341](image/midterm-report/1699838725341.png)
 
