@@ -47,7 +47,7 @@ The core technical impetus behind this project is to mitigate the impact of cred
 
 ## Methods
 
-**Data Preprocessing:**
+##### **Data Preprocessing:**
 
 For this project, data preprocessing can be roughly split into three sections: Initial Cleaning of data, Data standardization, and finally, Data resampling.
 
@@ -81,7 +81,7 @@ One process we chose not to perform was dimensionality reduction. This is due to
 
 The graph demonstrates that there is a relatively linear relationship between the number of components and the total remaining variance, suggesting that it would be difficult to remove even a few components without seriously affecting the total remaining variance.
 
-**Support Vector Machine Model (SVM):**
+##### **Support Vector Machine Model (SVM):**
 
 SVMs or Support Vector Machines are a supervised learning technique used for classification. It works by finding a hyperplane that divides 2 classes as best as possible. To do this SVM tries to find a hyperplane such that the distances between the hyperplane and the 2 classes are maximized.
 
@@ -91,7 +91,7 @@ Source: [https://www.researchgate.net/publication/304611323/figure/fig8/AS:66837
 
 The rationale behind SVMs is its ability to work well with many features. In the fraud detection dataset, we have around 30 features to help classify data points as fraud or not fraud. SVMs are very effective in such cases. Moreover the SVM algorithm works to maximize the margin between the classes (in this project it's a binary classification problem: either the data point is classified as fraud or not fraud), doing so reduces the chances of overfitting.
 
-Implementation:
+**Implementation:**
 
 * Both the SMOTE dataset and the undersampled dataset is passed in as paths into the file. The file is structured in a way that it can accept either dataset.
 * The Pandas library converts the datasets to a dataframe
@@ -99,7 +99,7 @@ Implementation:
 * From the ScikitLearn Library we then import the SVC module (Support Vector Classification). Using this SVC module, we train the SVM algorithm with the Xtrain and Ytrain dataset. Both a polynomial and a linear kernel have been implemented in this case
 * We then predict fraud/non-fraud cases using the Xtest data or the remaining 20% data.
 
-Results and Discussion
+**Results and Discussion:**
 
 After running the SVM model with the linear kernel on the undersampled dataset the following confusion matrix is produced:
 
@@ -121,7 +121,7 @@ While SVM looks to be successful at analyzing the undersampled dataset, the time
 
 As the SMOTE oversampled dataset has a total of 566505 data points and 30 features, the time it would take to successfully run and optimize a SVM model on the dataset is far too expensive time-wise to be practical. As such, we chose not to attempt to perform a thorough analysis on the results of SVM on the SMOTE dataset, due to the time constraints of the project.
 
-**K-Nearest Neighbors (KNN):**
+##### **K-Nearest Neighbors (KNN):**
 
 KNN operates on a simple concept: it classifies a data point based on how its neighbors are classified. The "k" in k-NN refers to the number of nearest neighbors considered when making the classification decision. The algorithm identifies the 'k' closest training examples in feature space and the class with the majority vote is the prediction for the classification task.
 
@@ -135,32 +135,31 @@ data point and consider the 'k' nearest data points to it. If the majority of th
 
 For our dataset, we split the data into 80% training and 20% testing, after applying Synthetic Minority Over-sampling Technique (SMOTE) and Undersampling to address class imbalance, and choose a k value of 50 to balance between noise reduction and maintaining class distinction. The rationale behind using KNN for our dataset is its effectiveness in handling multi-feature data. Our dataset, with its numerous features, is a good candidate for KNN, as the algorithm can effectively gauge similarity between data points in a multi-dimensional feature space.
 
-Implementation:
+**Implementation:**
 
 We processed both the SMOTE and undersampled datasets for KNN implementation. The datasets for both undersampled and SMOTE-sampled cases were downloaded using gdown and loaded using the Pandas library. This approach ensures direct and efficient access to the datasets. The datasets were read into a Pandas DataFrame, ensuring consistency across models in data handling. The dataset was divided into features (X) and labels (y), followed by a split into training (80%) and testing (20%) sets. This split ratio aligns with our methodology in other models, maintaining consistency in evaluating model performances. We used the KNeighborsClassifier from ScikitLearn's library. The 'k' value was experimentally determined, starting from a baseline of 50, to find the optimal balance between model complexity and performance. The model was trained on the training set and predictions were made on the test set, following the standard approach in supervised learning.
 
-Results and Discussion:
+**Results and Discussion:**
 
 ![1699838549603](image/midterm-report/1699838549603.png)
 
 ![]()![]()In both the undersampled and SMOTE datasets, the KNN algorithm has showcased a high degree of accuracy and reliability. The consistent performance across various metrics and cross-validation folds reflects the algorithm's potential for real-world applications in fraud detection. However, as with any model trained on specific types of datasets, it's crucial to perform further validation and testing, particularly in more complex and diverse real-world environments. This will help ensure that the model remains effective and robust when confronted with the myriad of scenarios present in actual credit card transaction data.
 
-**Random Forest Classifier**:
+##### **Random Forest Classifier**:
 
 A random forest classifier is also a classification algorithm that uses many decision trees to make predictions. It is an ensemble learning algorithm that uses a collection of decision trees to make predictions, called bagging, with the idea that multiple uncorrelated models perform much better as a group than they do alone.
 
 ![1699838599104](image/midterm-report/1699838599104.png)
 
-
 Source: [https://www.freecodecamp.org/news/how-to-use-the-tree-based-algorithm-for-machine-learning/]()
 
 Since our dataset is extremely large, includes a many features, and has an imbalance, working with both, a SMOTE sampled dataset and an undersampled dataset, is possible for a model like Random Forest as it works with a subset of features to train each tree independent of each other. Being such a versatile binary classifier working with multiple decision trees, it is clearly a great choice for dealing with complex datasets and fraud detection tasks.
 
-Implementation:
+**Implementation:**
 
 First, we import the essential libraries for this solution, which include the scikit-learn (RandomForestClassifier and metrics), matplotlib, seaborn (visualization), pandas, and numpy modules. The features (X) and labels (y) are then defined after reading the dataset, SMOTE sampled or undersampled, into a pandas DataFrame. A test size of 20% is used to divide the data into training and testing sets. A RandomForestClassifier is instantiated with a particular random state (kept the same for all runs and checked predicted values for different states), 100 estimators (default number of decision trees in the forest), and an out-of-bag score calculation (for validation and measuring correctly predicted rows from sample). After using the training data to train the model, predictions for the test data are generated. Using Seaborn's heatmap, a confusion matrix is produced. The results of computing and printing accuracy, precision, recall, F1 score, and balanced accuracy follow. Next, by looping through a list of feature numbers (difference of five between each number), the code investigates how the amount of features affects model performance. The evaluation metrics are recorded and a RandomForestClassifier is trained for every iteration. Plotting the results against the total number of features allows for the identification and printing of the most accurate model. There is a maximum amount of features that are provided for every iteration, along with 100 estimators, in the random forest parameters.
 
-Results and Discussion:
+**Results and Discussion:**
 
 Undersampled:
 
