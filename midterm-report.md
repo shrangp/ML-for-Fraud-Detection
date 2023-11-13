@@ -7,7 +7,7 @@ description:
 
 Credit card fraud has become a pressing issue in the digital age, especially with the increase in electronic transactions, which bypass many traditional security measures. In 2023, it was reported that 151 million American adults were victims of credit card fraud, a significant increase from the preceding year. This escalation not only results in substantial financial losses but also erodes trust in electronic payment systems, leading to a negative impact on both consumers and financial institutions. The need for advanced and reliable methods to detect fraudulent transactions in real-time has never been greater. Our research is focused on addressing this need by developing a sophisticated algorithm capable of identifying these fraudulent activities efficiently and effectively. The broader impact of credit card fraud beyond financial losses includes its effect on consumer behavior and trust.
 
-![](https://lh7-us.googleusercontent.com/bJFD3uruBNYfuv8k5t0BIzxDO3bmc4uaE-XeOrVZjDYm3T3hTOukpBBDD1vxTUckJqqws2N7c6BFNNvp-Gzm11xBHda8a66eNjrZ8CC_uVVzlhR1CfLPJSNyZQhwli5lG529WO4XabYW2vZxTX0A_BI)
+![]()![1699838072998](image/midterm-report/1699838072998.png)
 
 Source: [https://merchantcostconsulting.com/lower-credit-card-processing-fees/credit-card-fraud-statistics/](https://merchantcostconsulting.com/lower-credit-card-processing-fees/credit-card-fraud-statistics/)
 
@@ -55,7 +55,7 @@ Initial data cleaning was primarily done to ensure that there were no missing va
 
 Data standardization was performed after initial cleaning in order to ensure that all means across features were 0 and that all variances would be 1. The average and variance of each feature before standardization can be seen from the chart attached below (It uses a logarithmic scale, as the “Time” and “Amount” features have significantly higher average and variance than the 28 “V” variables and would completely obscure the data if such a scale was not used).
 
-![](https://lh7-us.googleusercontent.com/c60F9wr5juqaKg2FeBhYAtxZz1FQYwOK3nEIR9QEsKlndfyaI97c3saJZuCinV2Ijd0p9aL0GbeyulLpwbbW5NdJp1YdxhvbCBWG6c3HVBP6e9bpkIXZiDZa8VqM4df0OC6HnZcZl_ViKKVwziOvNiE "Chart")
+![]()![1699838127294](image/midterm-report/1699838127294.png)
 
 As it can be seen, whilst the means and variances for the 28 “V” features are relatively close to standardized, with most having means relatively close to 0 mean as well as variances less than 0.1, there is still clear room for improvement to most of these features. As well, the “Time” and “Amount” features clearly require standardization, with both having averages and variances significantly higher than what can be considered acceptable. As such, all values were fed into Scikit’s StandardScalar for standardization, causing all averages to become 0 and all variances to become 1.
 
@@ -63,21 +63,21 @@ The final step we conducted was to resample the data in order to create balanced
 
 Models trained on such an imbalanced dataset would obtain over 99% accuracy by simply classifying all test observations as valid and ignoring the actual problem of detecting fraudulent transactions.
 
- ![](https://lh7-us.googleusercontent.com/bAvX5TmzhqHsOoG_AjmA85x1kRkmXI0SrXBisVJqZlrQElVpvVOHp09ZJ6avIDTT0xnsrY-5gv4et6pxtXUnz3PwdtZX11crGAOURCBdvGwpI-tqQ9ZmrQUKyn1H8tUQGXH7Ez0ADvWE8U1MvzP0cUM "Points scored")
+ ![1699838170962](image/midterm-report/1699838170962.png)
 
-As such, we utilized multiple resampling methods to create two new, balanced datasets. For the first dataset, we utilized the method of undersampling. Specifically, as there were 472 cases of fraud, a new dataset was created by randomly selecting only 472 credible values through the use of the imbalanced-learn library’s RandomUnderSampler, creating a new balanced dataset of only 944 data points.
+As such, we utilized multiple resampling methods to create two new, balanced datasets. For the first dataset, we utilized the method of undersampling. Specifically, as there were 472 cases of fraud, a new dataset was created by randomly selecting only 472 credible values through the use of the imbalanced-learn library's RandomUnderSampler, creating a new balanced dataset of only 944 data points.
 
-![](https://lh7-us.googleusercontent.com/ScI_h5V-U3F0gmg6NOg4ZEqffcHzhhJyd0PYf0bpCNQQRsFP1GnrSy9iegnsF7M9rfDLG4uxx2KH1M-oC2QUkokw-WoIjobqmqhzmz8lE_acErWgA8wg0G1SSFxC3nk0hSoMM1NSaE9Br3mRAWh9xEk "Points scored")
+![1699838276744](image/midterm-report/1699838276744.png)
 
 The second dataset was created using oversampling, specifically Synthetic Minority Oversampling-Technique (SMOTE). This process, also done through the imbalanced-learn library’s SMOTE class, created a new dataset by generating synthetic fraud cases to match the total number of credible cases, ultimately resulting in a dataset of 566506 data points.
 
-![](https://lh7-us.googleusercontent.com/ETkCLO9oEEcgirOad1ZR6rqrvny734joLiPtKJBaumZGyMjBDt3VIrq24RvxlCExCg88eDQCZ9k9IJxV9mBHHxUDle_3NdYNu6ghzJWy0TaIrebkhKL7rM_jMYXESu7F48XT2fwRahJlDhYutRcPRxE "Points scored")
+![1699838311994](image/midterm-report/1699838311994.png)
 
 These datasets were then saved and fed into the later methods for learning and fitting.
 
 One process we chose not to perform was dimensionality reduction. This is due to the fact that in the original dataset, the 28 “V” variables were already chosen through a round of PCA processing, with the remaining two variables, “Time” and “Amount,” being the only ones not tested through PCA. Despite these two variables, we ultimately decided that further rounds of dimensionality reduction through PCA were unnecessary, as too much information would be lost by reducing the dimensionality of the data any further. This can be seen through the following graph of the number of components kept after PCA vs the total variance remaining:
 
-![](https://lh7-us.googleusercontent.com/gM0slC5lxjm66JVOkmgsVfMZG3C_ILo0Fjj9wlZO1wrnh5cPA5qJ_UmOYiaI8JtOMPpLpb_NVYwQfzCFpDcUJUR4gMYujOUzN0UQkFW0PmWaN1rECUz3q7NYVVSG4NfrkdSw5bGTc3JF1a2CpXukRkk)
+![]()![1699838363023](image/midterm-report/1699838363023.png)
 
 The graph demonstrates that there is a relatively linear relationship between the number of components and the total remaining variance, suggesting that it would be difficult to remove even a few components without seriously affecting the total remaining variance.
 
@@ -85,7 +85,7 @@ The graph demonstrates that there is a relatively linear relationship between th
 
 SVMs or Support Vector Machines are a supervised learning technique used for classification. It works by finding a hyperplane that divides 2 classes as best as possible. To do this SVM tries to find a hyperplane such that the distances between the hyperplane and the 2 classes are maximized.
 
-![](https://lh7-us.googleusercontent.com/b4EIipczi0gsbSlV8GtjVBjDVnIAnmDpy2PRGgKTH2o4NxNUaAIHBXqA_S0RB6VpbXUVoUaAv7RepA0OezEs6-e_yXrWxTJb9c8T5Qg_7v_-fucEm5fuw_d07hi0D7rLvkH2JucGs-4sUiinqiEvbgE)
+![]()![1699838399144](image/midterm-report/1699838399144.png)
 
 Source: [https://www.researchgate.net/publication/304611323/figure/fig8/AS:668377215406089@1536364954428/Classification-of-data-by-support-vector-machine-SVM.png](https://www.researchgate.net/publication/304611323/figure/fig8/AS:668377215406089@1536364954428/Classification-of-data-by-support-vector-machine-SVM.png)
 
@@ -103,13 +103,13 @@ Results and Discussion
 
 After running the SVM model with the linear kernel on the undersampled dataset the following confusion matrix is produced:
 
-![](https://lh7-us.googleusercontent.com/TPMJLrLJ-ING3Hk5PK_mmsrEn7vzc95HI4EZ4L7Q5nxmeYmfP82HWG6UKH3M8WvOgGKdvGfRZ0ahSeBNggKjKC7VRWFQSbWTPaWMANQ3zxpvTpFxtnHw1sdIvUt61BYglGZ5ftYyTpaGlVygv8jf084)
+![]()![1699838441471](image/midterm-report/1699838441471.png)
 
 The confusion matrix shows the accuracy with which the model is able to predict fraudulent cases. With regards to the undersampled data it only incorrectly classifies 1 datapoint.
 
 The accuracy vs number of features graph can also be seen as follows:
 
-![](https://lh7-us.googleusercontent.com/xY7Q-p5sVUT35wrh2Hn0YzMnuyTj1XwWKWezVK78TJnJDsIWugdtFnelePNcK5u7AFZz5hBd6SeSyfF7UqSBO8t4Z-VdOY4g_NlifRq5Mj4XEu8gN2_kU8LlFjVKJKwLR-6uwBd9kofjp-J82Kbey7s)
+![]()![1699838469270](image/midterm-report/1699838469270.png)
 
 This graph shows how the accuracy varies with respect to the number of features. One thing to be noted is that no matter what the accuracy wavers very close to 1 which shows the model works with near perfect predictions with a low of 99% accuracy when tested with 11 features. Overall this graph is proof of how powerful the SVM model can be for classification.
 
@@ -129,7 +129,9 @@ For instance, in a fraud detection scenario with numerous features, k-NN would l
 
 data point and consider the 'k' nearest data points to it. If the majority of these 'k' points are labeled as "fraud," then the algorithm will classify the data point as "fraud", and vice versa for "not fraud." The distance between points is usually calculated using measures such as Euclidean distance, Manhattan distance, or Hamming distance, depending on the type of the data.
 
-![](https://lh7-us.googleusercontent.com/wRwI_dvGX6Pc0nFi1k38h-Rjmqhm_lk5F7jRZvHZl6GcBrLLsl8bd2eOmaaqWmP6f7YmGSXGd0DmgK2mVAC_cmZRMokV1NOW6d1iSvZPlid-YBxOmF9GlFaWMg9D11O12eh0fZnGQOu2kMZ22aCFxS4)Reference: [https://www.ibm.com/topics/knn](https://www.ibm.com/topics/knn)
+![1699838508969](image/midterm-report/1699838508969.png)
+
+![]()Reference: [https://www.ibm.com/topics/knn](https://www.ibm.com/topics/knn)
 
 For our dataset, we split the data into 80% training and 20% testing, after applying Synthetic Minority Over-sampling Technique (SMOTE) and Undersampling to address class imbalance, and choose a k value of 50 to balance between noise reduction and maintaining class distinction. The rationale behind using KNN for our dataset is its effectiveness in handling multi-feature data. Our dataset, with its numerous features, is a good candidate for KNN, as the algorithm can effectively gauge similarity between data points in a multi-dimensional feature space.
 
@@ -139,11 +141,18 @@ We processed both the SMOTE and undersampled datasets for KNN implementation. Th
 
 Results and Discussion:
 
-![](https://lh7-us.googleusercontent.com/8LrUbhmZ_NLWroZ11fJYn68yr5XgCKxeSCWrfj_l_QblEkIUgY1F0ORYwAaNJYVh6Ic8lKJzlOJ8e_NaJTSedTtbHrK02ctTFNZ_TvUqo7kCfBwZnl0Dm-GbziQvCBNK1SCG6JJM78txLXbcHJCyy8U)![](https://lh7-us.googleusercontent.com/DwsKy-uLpz94bRwyG71IAOb7JFVxKD_eKVaobouK1VCtwTQ2DDfyfg03ggekgDSK5hg3KaMpJecyAsRKgJQQ6tey2XmVnsuBEQypoG8xXkQ0ZLB7dF1oZQBUDn0DKjcinAdFW3Nz7AItXnBfV4FterI)In both the undersampled and SMOTE datasets, the KNN algorithm has showcased a high degree of accuracy and reliability. The consistent performance across various metrics and cross-validation folds reflects the algorithm's potential for real-world applications in fraud detection. However, as with any model trained on specific types of datasets, it's crucial to perform further validation and testing, particularly in more complex and diverse real-world environments. This will help ensure that the model remains effective and robust when confronted with the myriad of scenarios present in actual credit card transaction data.
+![1699838549603](image/midterm-report/1699838549603.png)
+
+![]()![]()In both the undersampled and SMOTE datasets, the KNN algorithm has showcased a high degree of accuracy and reliability. The consistent performance across various metrics and cross-validation folds reflects the algorithm's potential for real-world applications in fraud detection. However, as with any model trained on specific types of datasets, it's crucial to perform further validation and testing, particularly in more complex and diverse real-world environments. This will help ensure that the model remains effective and robust when confronted with the myriad of scenarios present in actual credit card transaction data.
 
 **Random Forest Classifier**:
 
 A random forest classifier is also a classification algorithm that uses many decision trees to make predictions. It is an ensemble learning algorithm that uses a collection of decision trees to make predictions, called bagging, with the idea that multiple uncorrelated models perform much better as a group than they do alone.
+
+![1699838599104](image/midterm-report/1699838599104.png)
+
+
+Source: [https://www.freecodecamp.org/news/how-to-use-the-tree-based-algorithm-for-machine-learning/]()
 
 Since our dataset is extremely large, includes a many features, and has an imbalance, working with both, a SMOTE sampled dataset and an undersampled dataset, is possible for a model like Random Forest as it works with a subset of features to train each tree independent of each other. Being such a versatile binary classifier working with multiple decision trees, it is clearly a great choice for dealing with complex datasets and fraud detection tasks.
 
@@ -155,19 +164,19 @@ Results and Discussion:
 
 Undersampled:
 
-![](https://lh7-us.googleusercontent.com/xRxizd00MjPujFISfysbb3FNPxd0OfUYaSIrnVZDYbL5_pYeKSY_21oI879o8BuGBzFDW7IgzXdRUKfOHE9hPF7AO-1iHMRFiUF_eeURXyYgKnTBx6fW8HUOf-TczRfGmXXC_sZS5EFvLOlBTApHSPE)
+![]()![1699838667749](image/midterm-report/1699838667749.png)
 
 This confusion matrix that includes all features of the dataset (29) shows an extremely well trained prediction model. The Random Forest Classifier has almost perfectly classified all data points for fraud detection. There is only one data point that has been predicted incorrectly.
 
-![](https://lh7-us.googleusercontent.com/E-6KNDiKO49hzbUBQzO-bZnQo7gpCE6IFpFMTFsJ2HgJHiNqLHmjN0ZileeINd1rJaH99gjqp5jHVbuVuOhuNSSqukhIbE_AwYsYCjOJuw2CvakdsEVAJvAsq90VYnYSEFwC5ytjG6J2xV9CwUKPDUg)
+![]()![1699838699330](image/midterm-report/1699838699330.png)
 
 Precision was more or less the same for all numbers of features. All other quantitative metrics were slightly lower when there were only a maximum of five features. However, when there are ten or more features, there is no fluctuation in the values of all other quantitative metrics. This difference in metrics is still not very high based on the number of features, other than a slight increase in metrics from five to ten features, which was expected. Although these results are remarkable, there is more research required to ensure correct model performance based on features, no overfitting, and no data leakage.
 
-![](https://lh7-us.googleusercontent.com/-vd7mw9MFgChF1rKCfHmk15KoBL7t-r5ckc5zVREjx1vn5k0o-yJG0HxVkDTW22zaWNfxjgRDZm6nHiAdZVRvSXok2P2hpajglRhhbrPpm_wgmsKuuegzSBZs-f2KZYsUEUqp8mc_ndqU2nHDG9ZIrM)
+![]()![1699838725341](image/midterm-report/1699838725341.png)
 
 This confusion matrix that includes all features of the dataset (29) shows promising results. Even with over 100,000 test data points, the model has achieved an extremely high accuracy with only few of them being identified incorrectly as False Positive and False Negative.
 
-![img](https://lh7-us.googleusercontent.com/8NKJL48esrWy-QrLPlTYItr0Zq6JgaXoNRzC6lrZdv6Iz80Ies0F2IDjEzoB6oc-aM5lBTLH3CB-SpXi1EzHrEWNqs79vAYHe812jDSxqj6KDFjhljXdJvu5L8mUgSAkpfMzOhCPHZHx7nnvT2cKsqY)
+![1699838766626](image/midterm-report/1699838766626.png)
 This graph depicting the values of quantitative metrics vs. number of features shows that due to a large number of datapoints in the training set, the number of features does not have a significant effect on the value of these metrics. The results are quite positive again and show that the model is performing extremely well. Some more research and data validation is required to make sure that this algorithm is not overfitting and data quality is apt.
 
 ## Analysis of Metrics and Future Work
