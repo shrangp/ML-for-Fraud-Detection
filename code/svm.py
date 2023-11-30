@@ -9,12 +9,13 @@ from sklearn.preprocessing import StandardScaler # importing StandardScaler for 
 import matplotlib.pyplot as plt # importing matplotlib.pyplot for plotting
 from sklearn.model_selection import cross_val_score, KFold, cross_validate
 from sklearn.metrics import precision_score, balanced_accuracy_score, f1_score
+import time
 
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
 
 # reading data from csv file
 def read_data():
-    link = "C:\\Users\\Richard Zhao\\Downloads\\ml_project_team_34-Maniya-Dahiya-KNN\\ml_project_team_34-Maniya-Dahiya-KNN\\code\\SMOTEsampled.csv"
+    link = "SMOTEsampled.csv"
     df = pd.read_csv(link)
     #if link == "C:/Users/saara/OneDrive/Desktop/CS 4641/Project/ml_project_team_34/data/CS4641 Machine Learning Resources/SMOTEsampled.csv":
         #df = df[:200000]
@@ -54,7 +55,7 @@ def predict_svm_poly(svm_poly, X_test):
 def get_accuracy_svm_linear(y_pred, y_test):
     accuracy = accuracy_score(y_test, y_pred) # getting accuracy of SVM linear model
     return accuracy  
-
+"""
 data = read_data() # reading data from csv file
 X_train, X_test, y_train, y_test = split_data(data) # splitting data into train and test
 svm_linear = train_svm_linear(X_train, y_train) # training SVM linear model
@@ -68,3 +69,37 @@ print(f'Balanced Accuracy for file: {balanced_accuracy_score(y_test, y_pred)}')
 print(f'F1 for file: {f1_score(y_test, y_pred, average="macro")}')
 print(cv_scores)
 print(f'Cross Validation Score for file: {np.mean(cv_scores)}')
+"""
+
+raw = read_data() # reading data from csv file
+
+top = 10
+outputs = np.zeros((top + 1, 5))
+for i in range(1, top + 1):
+    frac = i * 0.1
+
+    data = raw.sample(frac=frac)
+    X_train, X_test, y_train, y_test = split_data(data)
+    start = time.process_time()
+    svm_linear = train_svm_linear(X_train, y_train)
+    #cv_scores = cross_val_score(svm_linear, data.iloc[:, :-1], data.iloc[:, -1], cv=5)
+    end = time.process_time()
+    y_pred = predict_svm_linear(svm_linear, X_test)
+
+    #timed, acc, recall, f1, cv = process(fraction=frac)
+    timed = end - start
+    acc = balanced_accuracy_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    
+    outputs[i][0] = frac
+    outputs[i][1] = timed
+    outputs[i][2] = acc
+    outputs[i][3] = recall
+    outputs[i][4] = f1
+
+labels = ["Fraction of Data", 'Time (Seconds)', 'Balanced Accuracy', 'Recall', 'F1']
+outputs = np.array(outputs)
+
+outDf = pd.DataFrame(outputs, columns=labels)
+outDf.to_csv("SVM Fraction Data.csv")
