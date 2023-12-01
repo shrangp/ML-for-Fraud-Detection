@@ -41,11 +41,11 @@ print("False Negatives: ", confusion_matrix_fraud[1][0])
 print("True Positives: ", confusion_matrix_fraud[1][1])
 # visualize the confusion matrix
 
-# sns.heatmap(confusion_matrix_fraud, annot=True, cmap='Blues', fmt='g')
-# plt.xlabel('Predicted')
-# plt.ylabel('Actual')
-# plt.title('Confusion Matrix for Random Forest Classifier')
-# plt.show()
+sns.heatmap(confusion_matrix_fraud, annot=True, cmap='Blues', fmt='g')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix for DBSCAN')
+plt.show()
 
 # print acccuracy, precision, balanced accuracy, recall, and f1 score
 tn = confusion_matrix_fraud[0][0]
