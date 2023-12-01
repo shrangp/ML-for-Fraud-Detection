@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt # importing matplotlib.pyplot for plotting
 from sklearn.model_selection import cross_val_score, KFold, cross_validate
 from sklearn.metrics import precision_score, balanced_accuracy_score, f1_score
 import time
+import gc
 
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score
 
@@ -75,31 +76,32 @@ raw = read_data() # reading data from csv file
 
 top = 10
 outputs = np.zeros((top + 1, 5))
-for i in range(1, top + 1):
-    frac = i * 0.1
-
-    data = raw.sample(frac=frac)
-    X_train, X_test, y_train, y_test = split_data(data)
-    start = time.process_time()
-    svm_linear = train_svm_linear(X_train, y_train)
-    #cv_scores = cross_val_score(svm_linear, data.iloc[:, :-1], data.iloc[:, -1], cv=5)
-    end = time.process_time()
-    y_pred = predict_svm_linear(svm_linear, X_test)
-
-    #timed, acc, recall, f1, cv = process(fraction=frac)
-    timed = end - start
-    acc = balanced_accuracy_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    
-    outputs[i][0] = frac
-    outputs[i][1] = timed
-    outputs[i][2] = acc
-    outputs[i][3] = recall
-    outputs[i][4] = f1
-
 labels = ["Fraction of Data", 'Time (Seconds)', 'Balanced Accuracy', 'Recall', 'F1']
-outputs = np.array(outputs)
+#for i in range(1, top + 1):
+i = 3
+frac = i * 0.1
 
-outDf = pd.DataFrame(outputs, columns=labels)
-outDf.to_csv("SVM Fraction Data.csv")
+data = raw.sample(frac=frac, random_state=0)
+print(data.shape)
+X_train, X_test, y_train, y_test = split_data(data)
+start = time.process_time()
+svm_linear = train_svm_linear(X_train, y_train)
+y_pred = predict_svm_linear(svm_linear, X_test)
+end = time.process_time()
+
+#timed, acc, recall, f1, cv = process(fraction=frac)
+timed = end - start
+acc = balanced_accuracy_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+#outputs[i][0] = frac
+#outputs[i][1] = timed
+#outputs[i][2] = acc
+#outputs[i][3] = recall
+#outputs[i][4] = f1
+
+print((frac, timed, acc, recall, f1))
+
+#outDf = pd.DataFrame(np.array(outputs), columns=labels)
+#outDf.to_csv("SVM Fraction Data.csv")

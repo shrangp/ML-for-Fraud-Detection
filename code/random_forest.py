@@ -18,7 +18,7 @@ import time
 raw = pd.read_csv('SMOTEsampled.csv')
 
 def process(fraction = 1.0):
-    df = raw.sample(frac=fraction)
+    df = raw.sample(frac=fraction, random_state=0)
     X = df.drop('Class', axis=1)
     y = df['Class']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
@@ -61,10 +61,10 @@ def process(fraction = 1.0):
 
     return end - start, balanced_accuracy_score(y_test, y_pred), recall_score(y_test, y_pred), f1_score(y_test, y_pred, average="macro"), 0
 
-top = 10
+top = 20
 outputs = np.zeros((top + 1, 5))
 for i in range(1, top + 1):
-    frac = i * 0.1
+    frac = i * 0.05
     timed, acc, recall, f1, cv = process(fraction=frac)
     
     outputs[i][0] = frac

@@ -14,7 +14,7 @@ def evaluate_knn_with_data(file_id, filename, test_size=0.20, n_neighbors=50, fr
 
     # Load the dataset
     df = pd.read_csv(filename)
-    df = df.sample(frac=fraction)
+    df = df.sample(frac=fraction, random_state=0)
     print("Hello World")
 
     # Assuming the last column is the label
@@ -75,15 +75,15 @@ def evaluate_knn_with_data(file_id, filename, test_size=0.20, n_neighbors=50, fr
     #print(f'Execution time in seconds for {filename}: {end - start}')
 
     #Return Accuracy, then Execution time in seconds
-    return end - start, balanced_accuracy_score(y_test, y_pred), recall_score(y_test, y_pred), f1_score(y_test, y_pred, average="macro"), 0
+    return end - start, balanced_accuracy_score(y_test, y_pred), recall_score(y_test, y_pred), f1_score(y_test, y_pred, average="macro")
 
 np.set_printoptions(suppress=True)
 
-top = 10
+top = 20
 outputs = np.zeros((top + 1, 5))
 for i in range(1, top + 1):
-    frac = i * 0.1
-    timed, acc, recall, f1, cv = evaluate_knn_with_data('1Y-qgStE3cO5OUKBl_k2AOQliVL5rUnzq', 'SMOTEsampled.csv', fraction=frac)
+    frac = i * 0.05
+    timed, acc, recall, f1 = evaluate_knn_with_data('1Y-qgStE3cO5OUKBl_k2AOQliVL5rUnzq', 'SMOTEsampled.csv', fraction=frac)
     
     outputs[i][0] = frac
     outputs[i][1] = timed
