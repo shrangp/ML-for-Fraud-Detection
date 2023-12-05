@@ -7,4 +7,6 @@ description:
 
 # [Midterm Report](./midterm-report.html)
 
+# [Final Report](./final-report.html)
+
 # [Gantt Chart](./gantt.html)
